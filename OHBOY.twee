@@ -1,0 +1,64 @@
+:: StoryTitle
+OHBOY
+
+
+:: StoryData
+{
+  "ifid": "B6A36671-320E-4B25-BFD3-4C6C756D86A7",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: Oh Boy {"position":"825,250","size":"100,100"}
+Oh Boy! It looks like you are trapped in here, you should find a way out!
+
+(if: $cabinet)[
+	[[go to door->look]]
+	[[search a cabinet->search]]
+](else:)[
+	[[look 'round->look]]
+]
+
+
+
+:: Start {"position":"650,250","size":"100,100"}
+(set: $cabinet to false)
+(set: $key to false)
+
+You wake up in a house, uh oh!
+
+[[get up->Oh Boy]]
+
+
+:: look {"position":"975,375","size":"100,100"}
+(if: $key) [
+	you could probably use the key...
+    
+    [[use key->win]]
+] (else:) [
+  You find a door, what can you do?
+
+  You also see a cabinet...
+  (set: $cabinet to true)
+
+  [[go back->Oh Boy]]
+]
+
+
+:: search {"position":"1100,350","size":"100,100"}
+You look through the cabinet...
+
+There is a key!
+
+(set: $key to true)
+
+[[go back->Oh Boy]]
+
+
+:: win {"position":"825,500","size":"100,100"}
+You Escape!
+
+[[start over->Start]]
